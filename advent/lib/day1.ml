@@ -22,4 +22,4 @@ let part2 input =
   |> fst
   |> Utils.sum
 
-let day1 input = (part1 input, part2 input)
+let both_parts input = (part1 input, part2 input)
