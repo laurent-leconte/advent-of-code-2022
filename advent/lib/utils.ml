@@ -19,6 +19,8 @@ let char_at s i = String.sub s i 1
 (* transform a string into a list of chars *)
 let explode s = List.init (String.length s) (char_at s) 
 
+let explode_to_chars s = List.init (String.length s) (String.get s)
+
 (** list helper functions **)
 
 let rec transpose = function
@@ -40,6 +42,19 @@ let take n l =
         | 0 -> (List.rev hd, tl)
         | n -> loop ((List.hd tl)::hd) (List.tl tl) (n-1) in
     loop [] l n
+
+let bundle n l =
+    let rec aux acc current j = function
+        | [] -> List.rev ((List.rev current)::acc)
+        | hd::tl as l -> if j = 0 then 
+                            aux (current::acc) [] n l 
+                         else 
+                            aux acc (hd::current) (j-1) tl in
+    aux [] [] n l
+
+let fold f = function
+  | [] | [_] -> failwith "Not enough items to fold list"
+  | hd::tl -> List.fold_left f hd tl
 
 (** matrix helper functions **)
 let dim m =
@@ -92,6 +107,12 @@ let memo_rec f =
       y
   in
   g
+
+(** Tuple maps **)
+
+let map_tuple f (a, b) = (f a, f b)
+
+let map_triple f (a, b, c) = (f a, f b, f c)
 
 (** print functions **)
 
