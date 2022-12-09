@@ -128,3 +128,9 @@ let print_matrix to_string mat =
     let _ = Array.map (print_array to_string) mat in ()
 
 let print_int_matrix = print_matrix string_of_int
+
+let string_of_point (x,y) = (string_of_int x) ^ "," ^ (string_of_int y)
+
+let print_list str_of_a l = print_endline @@ "[" ^ (String.concat ";" (List.map str_of_a l)) ^ "]"
+
+let print_int_list = print_list string_of_int
