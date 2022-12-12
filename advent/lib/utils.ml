@@ -95,6 +95,17 @@ let read_matrix file =
     List.iteri write_line data;
     (ground, n, m)
 
+let read_char_matrix file =
+    let data = read_lines file in
+    let n = List.length data in
+    let m = String.length @@ List.hd data in
+    let ground = Array.make_matrix n m ' ' in
+    let write_line i s =
+        let line = explode_to_chars s in
+        let write_one j d = ground.(i).(j) <- d in
+        List.iteri write_one line in
+    List.iteri write_line data;
+    (ground, n, m)
 
 (** memoize a recursive function **)
 let memo_rec f =
