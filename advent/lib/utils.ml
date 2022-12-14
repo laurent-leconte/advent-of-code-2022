@@ -47,7 +47,7 @@ let bundle n l =
     let rec aux acc current j = function
         | [] -> List.rev ((List.rev current)::acc)
         | hd::tl as l -> if j = 0 then 
-                            aux (current::acc) [] n l 
+                            aux (List.rev current::acc) [] n l 
                          else 
                             aux acc (hd::current) (j-1) tl in
     aux [] [] n l
